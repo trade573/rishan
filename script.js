@@ -5,7 +5,7 @@ const stockGraphCanvas = document.getElementById('stockGraph');
 const withdrawBtn = document.getElementById('withdrawBtn');
 
 // Initial Stock Value
-let stockValue = 75000; // Starting value of ₹15,000
+let stockValue = 75000; // Starting value of ₹7,500
 
 // Initialize Graph
 const ctx = stockGraphCanvas.getContext('2d');
@@ -39,8 +39,22 @@ let stockGraph = new Chart(ctx, {
     }
 });
 
-// Update stock value and graph
+// Function to check and update stock value based on time
 function updateStockValue() {
+    const currentDate = new Date();
+    
+    // Set the stock value at specific dates/times
+    if (currentDate >= new Date('2025-04-02T00:00:00') && currentDate < new Date('2025-04-03T00:00:00')) {
+        stockValue = 80000;
+    } else if (currentDate >= new Date('2025-04-03T00:00:00') && currentDate < new Date('2025-04-04T00:00:00')) {
+        stockValue = 95000;
+    } else if (currentDate >= new Date('2025-04-04T00:00:00') && currentDate < new Date('2025-04-05T00:00:00')) {
+        stockValue = 100000;
+    } else if (currentDate >= new Date('2025-04-03T00:00:00') && currentDate < new Date('2025-04-04T00:00:00')) {
+        stockValue = 0;
+    }
+
+    // Apply random fluctuation to the stock value (±5%)
     const fluctuation = (Math.random() * 0.1 - 0.05);  // ±5% fluctuation
     stockValue += stockValue * fluctuation;
 
@@ -99,4 +113,3 @@ withdrawBtn.addEventListener('click', () => {
 
 // Update ticker and data every second
 setInterval(updateStatusTicker, 1000);
-
