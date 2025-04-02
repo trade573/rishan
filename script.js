@@ -50,9 +50,13 @@ function updateStockValue() {
         stockValue = 95000;
     } else if (currentDate >= new Date('2025-04-04T00:00:00') && currentDate < new Date('2025-04-05T00:00:00')) {
         stockValue = 100000;
-    } else if (currentDate >= new Date('2025-04-03T00:00:00') && currentDate < new Date('2025-04-04T00:00:00')) {
+    } else if (currentDate >= new Date('2025-04-05T00:00:00') && currentDate < new Date('2025-04-06T00:00:00')) {
         stockValue = 0;
     }
+
+    if (stockValue === 0) {
+    return;  // Stop further execution and prevent fluctuation
+}
 
     // Apply random fluctuation to the stock value (±5%)
     const fluctuation = (Math.random() * 0.1 - 0.05);  // ±5% fluctuation
